@@ -232,7 +232,7 @@ module tb_uart_tx;
 		// at this point, the FIFO should be full.
 		checkTxFullBit(1);
 		
-		#(CHARACTER_PERIOD*19); 
+		#(CHARACTER_PERIOD*9); 
 		#(CLK16X_PERIOD*3);
 		
 		while (head !== tail) begin
@@ -254,6 +254,7 @@ module tb_uart_tx;
 		if (head !== tail) begin		
 		  $display("%t: TIMEOUT, not all characters processed.",$time);
 		  $display("The timeout is probably due to the TXDONE bit never going high.");
+		  $display("Head: %h, Tail: %h", head, tail);
 	  end
 	end
 	

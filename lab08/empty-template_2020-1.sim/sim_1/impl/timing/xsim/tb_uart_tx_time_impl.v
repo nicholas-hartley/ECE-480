@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-// Date        : Sat Nov 28 19:21:45 2020
+// Date        : Sat Nov 28 20:41:34 2020
 // Host        : DESKTOP-65RJND8 running 64-bit major release  (build 9200)
 // Command     : write_verilog -mode timesim -nolib -sdf_anno true -force -file
 //               D:/hippi/Documents/ECE480/lab08/empty-template_2020-1.sim/sim_1/impl/timing/xsim/tb_uart_tx_time_impl.v
@@ -14,59 +14,56 @@
 `define XIL_TIMING
 
 module fifo
-   (\control_reg[0] ,
-    \FSM_sequential_FSM_reg[0] ,
+   (\FSM_sequential_FSM_reg[0] ,
     \FSM_sequential_FSM_reg[1] ,
+    dout_OBUF,
     CLK,
     fifo_wren,
     D,
-    addr_IBUF,
-    wren_IBUF,
-    control,
-    \FSM_sequential_FSM_reg[0]_0 ,
     Q,
     baudclk16x,
-    \read_cnt_reg[1]_0 ,
-    reset_IBUF);
-  output \control_reg[0] ;
+    \FSM_sequential_FSM_reg[0]_0 ,
+    \read_cnt_reg[2]_0 ,
+    reset_IBUF,
+    \dout[0] ,
+    rdenq,
+    \dout[0]_0 );
   output [0:0]\FSM_sequential_FSM_reg[0] ;
   output \FSM_sequential_FSM_reg[1] ;
+  output [0:0]dout_OBUF;
   input CLK;
   input fifo_wren;
   input [7:0]D;
-  input [2:0]addr_IBUF;
-  input wren_IBUF;
-  input [0:0]control;
-  input \FSM_sequential_FSM_reg[0]_0 ;
   input [1:0]Q;
   input baudclk16x;
-  input \read_cnt_reg[1]_0 ;
+  input \FSM_sequential_FSM_reg[0]_0 ;
+  input \read_cnt_reg[2]_0 ;
   input reset_IBUF;
+  input [0:0]\dout[0] ;
+  input rdenq;
+  input [1:0]\dout[0]_0 ;
 
   wire CLK;
-  wire \FSM_sequential_FSM[0]_i_2_n_0 ;
   wire [0:0]\FSM_sequential_FSM_reg[0] ;
   wire \FSM_sequential_FSM_reg[0]_0 ;
   wire \FSM_sequential_FSM_reg[1] ;
   wire [1:0]Q;
-  wire [2:0]addr_IBUF;
   wire baudclk16x;
-  wire [0:0]control;
-  wire \control_reg[0] ;
-  wire fifo_full;
+  wire [0:0]\dout[0] ;
+  wire [1:0]\dout[0]_0 ;
+  wire [0:0]dout_OBUF;
+  wire \dout_OBUF[0]_inst_i_2_n_0 ;
   wire fifo_wren;
   wire nhartley_i_2_n_0;
-  wire read_cnt;
+  wire rdenq;
   wire \read_cnt[0]_i_1_n_0 ;
   wire \read_cnt[1]_i_1_n_0 ;
   wire \read_cnt[2]_i_1_n_0 ;
-  wire \read_cnt_reg[1]_0 ;
+  wire \read_cnt_reg[2]_0 ;
   wire \read_cnt_reg_n_0_[0] ;
   wire \read_cnt_reg_n_0_[1] ;
   wire \read_cnt_reg_n_0_[2] ;
   wire reset_IBUF;
-  wire wren_IBUF;
-  wire write_cnt;
   wire \write_cnt[0]_i_1_n_0 ;
   wire \write_cnt[1]_i_1_n_0 ;
   wire \write_cnt[2]_i_1_n_0 ;
@@ -75,96 +72,81 @@ module fifo
   wire \write_cnt_reg_n_0_[2] ;
 
   LUT5 #(
-    .INIT(32'hFC0A000A)) 
+    .INIT(32'hF4040404)) 
     \FSM_sequential_FSM[0]_i_1 
-       (.I0(\FSM_sequential_FSM[0]_i_2_n_0 ),
-        .I1(\FSM_sequential_FSM_reg[0]_0 ),
-        .I2(Q[0]),
-        .I3(Q[1]),
-        .I4(baudclk16x),
+       (.I0(Q[0]),
+        .I1(nhartley_i_2_n_0),
+        .I2(Q[1]),
+        .I3(baudclk16x),
+        .I4(\FSM_sequential_FSM_reg[0]_0 ),
         .O(\FSM_sequential_FSM_reg[0] ));
   LUT6 #(
-    .INIT(64'h6FF6FFFFFFFF6FF6)) 
-    \FSM_sequential_FSM[0]_i_2 
-       (.I0(\read_cnt_reg_n_0_[2] ),
-        .I1(\write_cnt_reg_n_0_[2] ),
-        .I2(\read_cnt_reg_n_0_[1] ),
-        .I3(\write_cnt_reg_n_0_[1] ),
+    .INIT(64'hFF3BC0083F3B0008)) 
+    \dout_OBUF[0]_inst_i_1 
+       (.I0(\dout[0] ),
+        .I1(rdenq),
+        .I2(\dout[0]_0 [1]),
+        .I3(\dout[0]_0 [0]),
+        .I4(dout_OBUF),
+        .I5(\dout_OBUF[0]_inst_i_2_n_0 ),
+        .O(dout_OBUF));
+  LUT6 #(
+    .INIT(64'h0110800820024004)) 
+    \dout_OBUF[0]_inst_i_2 
+       (.I0(\read_cnt_reg_n_0_[1] ),
+        .I1(\read_cnt_reg_n_0_[0] ),
+        .I2(\write_cnt_reg_n_0_[2] ),
+        .I3(\read_cnt_reg_n_0_[2] ),
         .I4(\write_cnt_reg_n_0_[0] ),
-        .I5(\read_cnt_reg_n_0_[0] ),
-        .O(\FSM_sequential_FSM[0]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hAABBABBBAA88A888)) 
-    \control[0]_i_1 
-       (.I0(fifo_full),
-        .I1(addr_IBUF[2]),
-        .I2(addr_IBUF[1]),
-        .I3(addr_IBUF[0]),
-        .I4(wren_IBUF),
-        .I5(control),
-        .O(\control_reg[0] ));
-  LUT6 #(
-    .INIT(64'h2042040004002042)) 
-    \control[0]_i_2 
-       (.I0(\read_cnt_reg_n_0_[0] ),
-        .I1(\write_cnt_reg_n_0_[0] ),
-        .I2(\read_cnt_reg_n_0_[1] ),
-        .I3(\write_cnt_reg_n_0_[1] ),
-        .I4(\write_cnt_reg_n_0_[2] ),
-        .I5(\read_cnt_reg_n_0_[2] ),
-        .O(fifo_full));
+        .I5(\write_cnt_reg_n_0_[1] ),
+        .O(\dout_OBUF[0]_inst_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
-    .INIT(32'hFF100010)) 
+    .INIT(32'hFF020002)) 
     fifo_rden_i_1
-       (.I0(Q[1]),
-        .I1(Q[0]),
-        .I2(\FSM_sequential_FSM[0]_i_2_n_0 ),
+       (.I0(nhartley_i_2_n_0),
+        .I1(Q[1]),
+        .I2(Q[0]),
         .I3(reset_IBUF),
-        .I4(\read_cnt_reg[1]_0 ),
+        .I4(\read_cnt_reg[2]_0 ),
         .O(\FSM_sequential_FSM_reg[1] ));
   LUT6 #(
-    .INIT(64'h6FF6FFFF00000000)) 
-    nhartley_i_1
-       (.I0(\read_cnt_reg_n_0_[0] ),
-        .I1(\write_cnt_reg_n_0_[0] ),
-        .I2(\write_cnt_reg_n_0_[1] ),
-        .I3(\read_cnt_reg_n_0_[1] ),
-        .I4(nhartley_i_2_n_0),
-        .I5(\read_cnt_reg[1]_0 ),
-        .O(read_cnt));
-  LUT2 #(
-    .INIT(4'h9)) 
+    .INIT(64'h6FF6FFFFFFFF6FF6)) 
     nhartley_i_2
-       (.I0(\read_cnt_reg_n_0_[2] ),
-        .I1(\write_cnt_reg_n_0_[2] ),
+       (.I0(\write_cnt_reg_n_0_[1] ),
+        .I1(\read_cnt_reg_n_0_[1] ),
+        .I2(\write_cnt_reg_n_0_[2] ),
+        .I3(\read_cnt_reg_n_0_[2] ),
+        .I4(\read_cnt_reg_n_0_[0] ),
+        .I5(\write_cnt_reg_n_0_[0] ),
         .O(nhartley_i_2_n_0));
-  LUT6 #(
-    .INIT(64'hD55D5555AAAA2AA2)) 
+  LUT3 #(
+    .INIT(8'h78)) 
     \read_cnt[0]_i_1 
-       (.I0(\read_cnt_reg[1]_0 ),
-        .I1(nhartley_i_2_n_0),
-        .I2(\read_cnt_reg_n_0_[1] ),
-        .I3(\write_cnt_reg_n_0_[1] ),
-        .I4(\write_cnt_reg_n_0_[0] ),
-        .I5(\read_cnt_reg_n_0_[0] ),
+       (.I0(nhartley_i_2_n_0),
+        .I1(\read_cnt_reg[2]_0 ),
+        .I2(\read_cnt_reg_n_0_[0] ),
         .O(\read_cnt[0]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hD5A255AAFF00FF00)) 
-    \read_cnt[1]_i_1 
-       (.I0(\read_cnt_reg_n_0_[0] ),
-        .I1(\write_cnt_reg_n_0_[0] ),
-        .I2(\write_cnt_reg_n_0_[1] ),
-        .I3(\read_cnt_reg_n_0_[1] ),
-        .I4(nhartley_i_2_n_0),
-        .I5(\read_cnt_reg[1]_0 ),
-        .O(\read_cnt[1]_i_1_n_0 ));
+  (* \PinAttr:I3:HOLD_DETOUR  = "191" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
+    \read_cnt[1]_i_1 
+       (.I0(\read_cnt_reg_n_0_[0] ),
+        .I1(\read_cnt_reg[2]_0 ),
+        .I2(nhartley_i_2_n_0),
+        .I3(\read_cnt_reg_n_0_[1] ),
+        .O(\read_cnt[1]_i_1_n_0 ));
+  (* \PinAttr:I0:HOLD_DETOUR  = "191" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT5 #(
+    .INIT(32'h7FFF8000)) 
     \read_cnt[2]_i_1 
        (.I0(\read_cnt_reg_n_0_[1] ),
         .I1(\read_cnt_reg_n_0_[0] ),
-        .I2(read_cnt),
-        .I3(\read_cnt_reg_n_0_[2] ),
+        .I2(\read_cnt_reg[2]_0 ),
+        .I3(nhartley_i_2_n_0),
+        .I4(\read_cnt_reg_n_0_[2] ),
         .O(\read_cnt[2]_i_1_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
@@ -190,44 +172,32 @@ module fifo
         .CLR(reset_IBUF),
         .D(\read_cnt[2]_i_1_n_0 ),
         .Q(\read_cnt_reg_n_0_[2] ));
-  LUT6 #(
-    .INIT(64'h0210FFFF7FF70000)) 
+  LUT3 #(
+    .INIT(8'hB4)) 
     \write_cnt[0]_i_1 
-       (.I0(nhartley_i_2_n_0),
-        .I1(\read_cnt_reg_n_0_[0] ),
-        .I2(\write_cnt_reg_n_0_[1] ),
-        .I3(\read_cnt_reg_n_0_[1] ),
-        .I4(fifo_wren),
-        .I5(\write_cnt_reg_n_0_[0] ),
+       (.I0(\dout_OBUF[0]_inst_i_2_n_0 ),
+        .I1(fifo_wren),
+        .I2(\write_cnt_reg_n_0_[0] ),
         .O(\write_cnt[0]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h5A52F0F05A7AF0F0)) 
-    \write_cnt[1]_i_1 
-       (.I0(fifo_wren),
-        .I1(\read_cnt_reg_n_0_[1] ),
-        .I2(\write_cnt_reg_n_0_[1] ),
-        .I3(\read_cnt_reg_n_0_[0] ),
-        .I4(\write_cnt_reg_n_0_[0] ),
-        .I5(nhartley_i_2_n_0),
-        .O(\write_cnt[1]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
-    .INIT(16'h7F80)) 
+    .INIT(16'hF708)) 
+    \write_cnt[1]_i_1 
+       (.I0(\write_cnt_reg_n_0_[0] ),
+        .I1(fifo_wren),
+        .I2(\dout_OBUF[0]_inst_i_2_n_0 ),
+        .I3(\write_cnt_reg_n_0_[1] ),
+        .O(\write_cnt[1]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  LUT5 #(
+    .INIT(32'hFF7F0080)) 
     \write_cnt[2]_i_1 
        (.I0(\write_cnt_reg_n_0_[1] ),
         .I1(\write_cnt_reg_n_0_[0] ),
-        .I2(write_cnt),
-        .I3(\write_cnt_reg_n_0_[2] ),
+        .I2(fifo_wren),
+        .I3(\dout_OBUF[0]_inst_i_2_n_0 ),
+        .I4(\write_cnt_reg_n_0_[2] ),
         .O(\write_cnt[2]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hAAA228AAAA8AAAAA)) 
-    \write_cnt[2]_i_2 
-       (.I0(fifo_wren),
-        .I1(\read_cnt_reg_n_0_[1] ),
-        .I2(\write_cnt_reg_n_0_[1] ),
-        .I3(\read_cnt_reg_n_0_[0] ),
-        .I4(\write_cnt_reg_n_0_[0] ),
-        .I5(nhartley_i_2_n_0),
-        .O(write_cnt));
   FDCE #(
     .INIT(1'b0)) 
     \write_cnt_reg[0] 
@@ -254,7 +224,7 @@ module fifo
         .Q(\write_cnt_reg_n_0_[2] ));
 endmodule
 
-(* ECO_CHECKSUM = "9a67ae1a" *) (* PERIOD = "8'b00011010" *) 
+(* ECO_CHECKSUM = "1c8196ad" *) (* PERIOD = "8'b00011010" *) 
 (* NotValidForBitStream *)
 module uart_tx
    (clk,
@@ -276,13 +246,17 @@ module uart_tx
 
   wire [0:0]FSM;
   wire [1:0]FSM__0;
-  wire \FSM_sequential_FSM[0]_i_3_n_0 ;
+  wire \FSM_sequential_FSM[0]_i_2_n_0 ;
   wire \FSM_sequential_FSM_reg_n_0_[1] ;
+  wire TXDone;
+  wire TXDone_i_1_n_0;
+  wire TXDone_i_2_n_0;
   wire [2:0]addr;
   wire [2:0]addr_IBUF;
   wire [1:0]addrq;
   wire baudclk16x;
   wire baudclk16x_i_1_n_0;
+  wire baudclk16x_i_2_n_0;
   wire bitcounter;
   wire \bitcounter[0]_i_1_n_0 ;
   wire \bitcounter[1]_i_1_n_0 ;
@@ -298,6 +272,7 @@ module uart_tx
   wire \bittimer[1]_i_1_n_0 ;
   wire \bittimer[2]_i_1_n_0 ;
   wire \bittimer[3]_i_2_n_0 ;
+  wire \bittimer[3]_i_3_n_0 ;
   wire \bittimer_reg_n_0_[0] ;
   wire \bittimer_reg_n_0_[1] ;
   wire \bittimer_reg_n_0_[2] ;
@@ -305,10 +280,6 @@ module uart_tx
   wire clk;
   wire clk_IBUF;
   wire clk_IBUF_BUFG;
-  wire [1:0]control;
-  wire \control[1]_i_1_n_0 ;
-  wire \control[1]_i_2_n_0 ;
-  wire \control[1]_i_3_n_0 ;
   wire [7:0]din;
   wire [7:0]din_IBUF;
   wire [7:0]dout;
@@ -316,7 +287,6 @@ module uart_tx
   wire fifo_rden_reg_n_0;
   wire fifo_wren;
   wire fifo_wren_i_1_n_0;
-  wire [7:0]p_0_in;
   wire [7:0]period;
   wire \period[7]_i_1_n_0 ;
   wire rden;
@@ -324,18 +294,8 @@ module uart_tx
   wire rdenq;
   wire reset;
   wire reset_IBUF;
-  wire [7:0]tmr;
-  wire \tmr[4]_i_2_n_0 ;
-  wire \tmr[5]_i_2_n_0 ;
-  wire \tmr[7]_i_2_n_0 ;
-  wire \tmr[7]_i_3_n_0 ;
-  wire \tmr[7]_i_4_n_0 ;
-  wire \tmr[7]_i_5_n_0 ;
-  wire tmr_en;
-  wire tmr_en_i_1_n_0;
   wire txout;
-  wire u0_n_0;
-  wire u0_n_2;
+  wire u0_n_1;
   wire wren;
   wire wren_IBUF;
   wire [7:0]NLW_u0_D_UNCONNECTED;
@@ -343,22 +303,23 @@ module uart_tx
 initial begin
  $sdf_annotate("tb_uart_tx_time_impl.sdf",,,,"tool_control");
 end
-  LUT4 #(
-    .INIT(16'hFFDF)) 
-    \FSM_sequential_FSM[0]_i_3 
-       (.I0(\bitcounter_reg_n_0_[1] ),
+  LUT5 #(
+    .INIT(32'hFEFFFFFF)) 
+    \FSM_sequential_FSM[0]_i_2 
+       (.I0(FSM),
         .I1(\bitcounter_reg_n_0_[0] ),
-        .I2(\bitcounter_reg_n_0_[3] ),
-        .I3(\bitcounter_reg_n_0_[2] ),
-        .O(\FSM_sequential_FSM[0]_i_3_n_0 ));
+        .I2(\bitcounter_reg_n_0_[2] ),
+        .I3(\bitcounter_reg_n_0_[1] ),
+        .I4(\bitcounter_reg_n_0_[3] ),
+        .O(\FSM_sequential_FSM[0]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFFFFFAAAAA2AA)) 
+    .INIT(64'hFFFFFFFFFFF70000)) 
     \FSM_sequential_FSM[1]_i_1 
-       (.I0(\FSM_sequential_FSM_reg_n_0_[1] ),
+       (.I0(\bitcounter_reg_n_0_[3] ),
         .I1(\bitcounter_reg_n_0_[1] ),
-        .I2(\bitcounter_reg_n_0_[0] ),
-        .I3(\bitcounter_reg_n_0_[3] ),
-        .I4(\bitcounter_reg_n_0_[2] ),
+        .I2(\bitcounter_reg_n_0_[2] ),
+        .I3(\bitcounter_reg_n_0_[0] ),
+        .I4(\FSM_sequential_FSM_reg_n_0_[1] ),
         .I5(FSM),
         .O(FSM__0[1]));
   (* FSM_ENCODED_STATES = "iSTATE:01,iSTATE0:00,iSTATE1:11,iSTATE2:10" *) 
@@ -379,6 +340,34 @@ end
         .CLR(reset_IBUF),
         .D(FSM__0[1]),
         .Q(\FSM_sequential_FSM_reg_n_0_[1] ));
+  LUT6 #(
+    .INIT(64'hFEFFFFFFCECCCCCC)) 
+    TXDone_i_1
+       (.I0(din_IBUF[1]),
+        .I1(TXDone_i_2_n_0),
+        .I2(addr_IBUF[2]),
+        .I3(addr_IBUF[1]),
+        .I4(addr_IBUF[0]),
+        .I5(TXDone),
+        .O(TXDone_i_1_n_0));
+  LUT6 #(
+    .INIT(64'h0000000000000080)) 
+    TXDone_i_2
+       (.I0(\FSM_sequential_FSM_reg_n_0_[1] ),
+        .I1(\bitcounter_reg_n_0_[3] ),
+        .I2(\bitcounter_reg_n_0_[1] ),
+        .I3(\bitcounter_reg_n_0_[2] ),
+        .I4(\bitcounter_reg_n_0_[0] ),
+        .I5(FSM),
+        .O(TXDone_i_2_n_0));
+  FDPE #(
+    .INIT(1'b1)) 
+    TXDone_reg
+       (.C(clk_IBUF_BUFG),
+        .CE(1'b1),
+        .D(TXDone_i_1_n_0),
+        .PRE(reset_IBUF),
+        .Q(TXDone));
   IBUF \addr_IBUF[0]_inst 
        (.I(addr[0]),
         .O(addr_IBUF[0]));
@@ -404,14 +393,24 @@ end
         .D(addr_IBUF[1]),
         .Q(addrq[1]),
         .R(1'b0));
-  (* \PinAttr:I1:HOLD_DETOUR  = "176" *) 
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT2 #(
-    .INIT(4'h6)) 
+  LUT6 #(
+    .INIT(64'hFFFFFFFE00000001)) 
     baudclk16x_i_1
-       (.I0(\tmr[7]_i_3_n_0 ),
-        .I1(baudclk16x),
+       (.I0(baudclk16x_i_2_n_0),
+        .I1(period[7]),
+        .I2(period[6]),
+        .I3(period[4]),
+        .I4(period[3]),
+        .I5(baudclk16x),
         .O(baudclk16x_i_1_n_0));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    baudclk16x_i_2
+       (.I0(period[5]),
+        .I1(period[1]),
+        .I2(period[2]),
+        .I3(period[0]),
+        .O(baudclk16x_i_2_n_0));
   FDCE #(
     .INIT(1'b0)) 
     baudclk16x_reg
@@ -420,12 +419,16 @@ end
         .CLR(reset_IBUF),
         .D(baudclk16x_i_1_n_0),
         .Q(baudclk16x));
+  (* \PinAttr:I1:HOLD_DETOUR  = "189" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \bitcounter[0]_i_1 
        (.I0(\FSM_sequential_FSM_reg_n_0_[1] ),
         .I1(\bitcounter_reg_n_0_[0] ),
         .O(\bitcounter[0]_i_1_n_0 ));
+  (* \PinAttr:I1:HOLD_DETOUR  = "189" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'h28)) 
     \bitcounter[1]_i_1 
@@ -435,40 +438,39 @@ end
         .O(\bitcounter[1]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT4 #(
-    .INIT(16'h7080)) 
+    .INIT(16'h2A80)) 
     \bitcounter[2]_i_1 
-       (.I0(\bitcounter_reg_n_0_[0] ),
-        .I1(\bitcounter_reg_n_0_[1] ),
-        .I2(\FSM_sequential_FSM_reg_n_0_[1] ),
+       (.I0(\FSM_sequential_FSM_reg_n_0_[1] ),
+        .I1(\bitcounter_reg_n_0_[0] ),
+        .I2(\bitcounter_reg_n_0_[1] ),
         .I3(\bitcounter_reg_n_0_[2] ),
         .O(\bitcounter[2]_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'h444F)) 
+  LUT6 #(
+    .INIT(64'h000F000F000F200F)) 
     \bitcounter[3]_i_1 
-       (.I0(\bittimer_reg_n_0_[0] ),
-        .I1(\bitcounter[3]_i_3_n_0 ),
+       (.I0(\bitcounter[3]_i_3_n_0 ),
+        .I1(baudclk16x),
         .I2(\FSM_sequential_FSM_reg_n_0_[1] ),
         .I3(FSM),
+        .I4(\bittimer_reg_n_0_[3] ),
+        .I5(\bittimer_reg_n_0_[2] ),
         .O(bitcounter));
   (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT5 #(
     .INIT(32'h7F008000)) 
     \bitcounter[3]_i_2 
        (.I0(\bitcounter_reg_n_0_[2] ),
-        .I1(\bitcounter_reg_n_0_[0] ),
-        .I2(\bitcounter_reg_n_0_[1] ),
+        .I1(\bitcounter_reg_n_0_[1] ),
+        .I2(\bitcounter_reg_n_0_[0] ),
         .I3(\FSM_sequential_FSM_reg_n_0_[1] ),
         .I4(\bitcounter_reg_n_0_[3] ),
         .O(\bitcounter[3]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000200000000)) 
+  (* \PinAttr:I0:HOLD_DETOUR  = "176" *) 
+  LUT2 #(
+    .INIT(4'h1)) 
     \bitcounter[3]_i_3 
-       (.I0(FSM),
-        .I1(\bittimer_reg_n_0_[3] ),
-        .I2(\bittimer_reg_n_0_[1] ),
-        .I3(\bittimer_reg_n_0_[2] ),
-        .I4(baudclk16x),
-        .I5(\FSM_sequential_FSM_reg_n_0_[1] ),
+       (.I0(\bittimer_reg_n_0_[1] ),
+        .I1(\bittimer_reg_n_0_[0] ),
         .O(\bitcounter[3]_i_3_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
@@ -502,52 +504,55 @@ end
         .CLR(reset_IBUF),
         .D(\bitcounter[3]_i_2_n_0 ),
         .Q(\bitcounter_reg_n_0_[3] ));
-  (* \PinAttr:I1:HOLD_DETOUR  = "189" *) 
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \bittimer[0]_i_1 
        (.I0(\FSM_sequential_FSM_reg_n_0_[1] ),
         .I1(\bittimer_reg_n_0_[0] ),
         .O(\bittimer[0]_i_1_n_0 ));
-  (* \PinAttr:I0:HOLD_DETOUR  = "189" *) 
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* \PinAttr:I1:HOLD_DETOUR  = "176" *) 
   LUT3 #(
-    .INIT(8'h48)) 
+    .INIT(8'h28)) 
     \bittimer[1]_i_1 
-       (.I0(\bittimer_reg_n_0_[0] ),
-        .I1(\FSM_sequential_FSM_reg_n_0_[1] ),
-        .I2(\bittimer_reg_n_0_[1] ),
+       (.I0(\FSM_sequential_FSM_reg_n_0_[1] ),
+        .I1(\bittimer_reg_n_0_[1] ),
+        .I2(\bittimer_reg_n_0_[0] ),
         .O(\bittimer[1]_i_1_n_0 ));
-  (* \PinAttr:I0:HOLD_DETOUR  = "195" *) 
   (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT4 #(
-    .INIT(16'h7080)) 
+    .INIT(16'h2A80)) 
     \bittimer[2]_i_1 
-       (.I0(\bittimer_reg_n_0_[0] ),
+       (.I0(\FSM_sequential_FSM_reg_n_0_[1] ),
         .I1(\bittimer_reg_n_0_[1] ),
-        .I2(\FSM_sequential_FSM_reg_n_0_[1] ),
+        .I2(\bittimer_reg_n_0_[0] ),
         .I3(\bittimer_reg_n_0_[2] ),
         .O(\bittimer[2]_i_1_n_0 ));
   LUT4 #(
-    .INIT(16'h008F)) 
+    .INIT(16'h3111)) 
     \bittimer[3]_i_1 
-       (.I0(\FSM_sequential_FSM[0]_i_3_n_0 ),
-        .I1(baudclk16x),
-        .I2(\FSM_sequential_FSM_reg_n_0_[1] ),
-        .I3(FSM),
+       (.I0(\FSM_sequential_FSM_reg_n_0_[1] ),
+        .I1(FSM),
+        .I2(baudclk16x),
+        .I3(\bittimer[3]_i_3_n_0 ),
         .O(bittimer));
-  (* \PinAttr:I1:HOLD_DETOUR  = "195" *) 
   (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
     .INIT(32'h7F008000)) 
     \bittimer[3]_i_2 
-       (.I0(\bittimer_reg_n_0_[1] ),
+       (.I0(\bittimer_reg_n_0_[2] ),
         .I1(\bittimer_reg_n_0_[0] ),
-        .I2(\bittimer_reg_n_0_[2] ),
+        .I2(\bittimer_reg_n_0_[1] ),
         .I3(\FSM_sequential_FSM_reg_n_0_[1] ),
         .I4(\bittimer_reg_n_0_[3] ),
         .O(\bittimer[3]_i_2_n_0 ));
+  LUT4 #(
+    .INIT(16'hFFF7)) 
+    \bittimer[3]_i_3 
+       (.I0(\bitcounter_reg_n_0_[3] ),
+        .I1(\bitcounter_reg_n_0_[1] ),
+        .I2(\bitcounter_reg_n_0_[2] ),
+        .I3(\bitcounter_reg_n_0_[0] ),
+        .O(\bittimer[3]_i_3_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
     \bittimer_reg[0] 
@@ -586,48 +591,6 @@ end
   IBUF clk_IBUF_inst
        (.I(clk),
         .O(clk_IBUF));
-  LUT6 #(
-    .INIT(64'hFFFFFBFFFFFF0800)) 
-    \control[1]_i_1 
-       (.I0(din_IBUF[1]),
-        .I1(addr_IBUF[1]),
-        .I2(addr_IBUF[2]),
-        .I3(\control[1]_i_2_n_0 ),
-        .I4(\control[1]_i_3_n_0 ),
-        .I5(control[1]),
-        .O(\control[1]_i_1_n_0 ));
-  LUT2 #(
-    .INIT(4'h8)) 
-    \control[1]_i_2 
-       (.I0(wren_IBUF),
-        .I1(addr_IBUF[0]),
-        .O(\control[1]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000200000)) 
-    \control[1]_i_3 
-       (.I0(\FSM_sequential_FSM_reg_n_0_[1] ),
-        .I1(FSM),
-        .I2(\bitcounter_reg_n_0_[1] ),
-        .I3(\bitcounter_reg_n_0_[0] ),
-        .I4(\bitcounter_reg_n_0_[3] ),
-        .I5(\bitcounter_reg_n_0_[2] ),
-        .O(\control[1]_i_3_n_0 ));
-  FDCE #(
-    .INIT(1'b0)) 
-    \control_reg[0] 
-       (.C(clk_IBUF_BUFG),
-        .CE(1'b1),
-        .CLR(reset_IBUF),
-        .D(u0_n_0),
-        .Q(control[0]));
-  FDPE #(
-    .INIT(1'b1)) 
-    \control_reg[1] 
-       (.C(clk_IBUF_BUFG),
-        .CE(1'b1),
-        .D(\control[1]_i_1_n_0 ),
-        .PRE(reset_IBUF),
-        .Q(control[1]));
   IBUF \din_IBUF[0]_inst 
        (.I(din[0]),
         .O(din_IBUF[0]));
@@ -655,116 +618,106 @@ end
   OBUF \dout_OBUF[0]_inst 
        (.I(dout_OBUF[0]),
         .O(dout[0]));
-  LUT6 #(
-    .INIT(64'hFFC03F002F202F20)) 
-    \dout_OBUF[0]_inst_i_1 
-       (.I0(period[0]),
-        .I1(addrq[1]),
-        .I2(rdenq),
-        .I3(dout_OBUF[0]),
-        .I4(control[0]),
-        .I5(addrq[0]),
-        .O(dout_OBUF[0]));
   OBUF \dout_OBUF[1]_inst 
        (.I(dout_OBUF[1]),
         .O(dout[1]));
   LUT6 #(
-    .INIT(64'hFFC03F002F202F20)) 
+    .INIT(64'hF0CACCCC00CACCCC)) 
     \dout_OBUF[1]_inst_i_1 
        (.I0(period[1]),
-        .I1(addrq[1]),
-        .I2(rdenq),
-        .I3(dout_OBUF[1]),
-        .I4(control[1]),
-        .I5(addrq[0]),
+        .I1(dout_OBUF[1]),
+        .I2(addrq[0]),
+        .I3(addrq[1]),
+        .I4(rdenq),
+        .I5(TXDone),
         .O(dout_OBUF[1]));
   OBUF \dout_OBUF[2]_inst 
        (.I(dout_OBUF[2]),
         .O(dout[2]));
   LUT5 #(
-    .INIT(32'h22AA22E2)) 
+    .INIT(32'h23AA20AA)) 
     \dout_OBUF[2]_inst_i_1 
        (.I0(dout_OBUF[2]),
-        .I1(rdenq),
-        .I2(period[2]),
-        .I3(addrq[1]),
-        .I4(addrq[0]),
+        .I1(addrq[1]),
+        .I2(addrq[0]),
+        .I3(rdenq),
+        .I4(period[2]),
         .O(dout_OBUF[2]));
   OBUF \dout_OBUF[3]_inst 
        (.I(dout_OBUF[3]),
         .O(dout[3]));
   LUT5 #(
-    .INIT(32'h22AA22E2)) 
+    .INIT(32'h23AA20AA)) 
     \dout_OBUF[3]_inst_i_1 
        (.I0(dout_OBUF[3]),
-        .I1(rdenq),
-        .I2(period[3]),
-        .I3(addrq[1]),
-        .I4(addrq[0]),
+        .I1(addrq[1]),
+        .I2(addrq[0]),
+        .I3(rdenq),
+        .I4(period[3]),
         .O(dout_OBUF[3]));
   OBUF \dout_OBUF[4]_inst 
        (.I(dout_OBUF[4]),
         .O(dout[4]));
   LUT5 #(
-    .INIT(32'h22AA22E2)) 
+    .INIT(32'h23AA20AA)) 
     \dout_OBUF[4]_inst_i_1 
        (.I0(dout_OBUF[4]),
-        .I1(rdenq),
-        .I2(period[4]),
-        .I3(addrq[1]),
-        .I4(addrq[0]),
+        .I1(addrq[1]),
+        .I2(addrq[0]),
+        .I3(rdenq),
+        .I4(period[4]),
         .O(dout_OBUF[4]));
   OBUF \dout_OBUF[5]_inst 
        (.I(dout_OBUF[5]),
         .O(dout[5]));
   LUT5 #(
-    .INIT(32'h22AA22E2)) 
+    .INIT(32'h23AA20AA)) 
     \dout_OBUF[5]_inst_i_1 
        (.I0(dout_OBUF[5]),
-        .I1(rdenq),
-        .I2(period[5]),
-        .I3(addrq[1]),
-        .I4(addrq[0]),
+        .I1(addrq[1]),
+        .I2(addrq[0]),
+        .I3(rdenq),
+        .I4(period[5]),
         .O(dout_OBUF[5]));
   OBUF \dout_OBUF[6]_inst 
        (.I(dout_OBUF[6]),
         .O(dout[6]));
   LUT5 #(
-    .INIT(32'h22AA22E2)) 
+    .INIT(32'h23AA20AA)) 
     \dout_OBUF[6]_inst_i_1 
        (.I0(dout_OBUF[6]),
-        .I1(rdenq),
-        .I2(period[6]),
-        .I3(addrq[1]),
-        .I4(addrq[0]),
+        .I1(addrq[1]),
+        .I2(addrq[0]),
+        .I3(rdenq),
+        .I4(period[6]),
         .O(dout_OBUF[6]));
   OBUF \dout_OBUF[7]_inst 
        (.I(dout_OBUF[7]),
         .O(dout[7]));
   LUT5 #(
-    .INIT(32'h22AA22E2)) 
+    .INIT(32'h23AA20AA)) 
     \dout_OBUF[7]_inst_i_1 
        (.I0(dout_OBUF[7]),
-        .I1(rdenq),
-        .I2(period[7]),
-        .I3(addrq[1]),
-        .I4(addrq[0]),
+        .I1(addrq[1]),
+        .I2(addrq[0]),
+        .I3(rdenq),
+        .I4(period[7]),
         .O(dout_OBUF[7]));
   FDRE #(
     .INIT(1'b0)) 
     fifo_rden_reg
        (.C(clk_IBUF_BUFG),
         .CE(1'b1),
-        .D(u0_n_2),
+        .D(u0_n_1),
         .Q(fifo_rden_reg_n_0),
         .R(1'b0));
   LUT6 #(
-    .INIT(64'hFFFF000800000008)) 
+    .INIT(64'hFFFF002000000020)) 
     fifo_wren_i_1
        (.I0(addr_IBUF[0]),
-        .I1(wren_IBUF),
-        .I2(addr_IBUF[2]),
-        .I3(addr_IBUF[1]),
+        .I1(addr_IBUF[1]),
+        .I2(wren_IBUF),
+        .I3(addr_IBUF[2]),
         .I4(reset_IBUF),
         .I5(fifo_wren),
         .O(fifo_wren_i_1_n_0));
@@ -777,12 +730,12 @@ end
         .Q(fifo_wren),
         .R(1'b0));
   LUT4 #(
-    .INIT(16'h0004)) 
+    .INIT(16'h0010)) 
     \period[7]_i_1 
        (.I0(addr_IBUF[0]),
-        .I1(wren_IBUF),
-        .I2(addr_IBUF[2]),
-        .I3(addr_IBUF[1]),
+        .I1(addr_IBUF[1]),
+        .I2(wren_IBUF),
+        .I3(addr_IBUF[2]),
         .O(\period[7]_i_1_n_0 ));
   FDCE #(
     .INIT(1'b0)) 
@@ -862,216 +815,6 @@ end
   IBUF reset_IBUF_inst
        (.I(reset),
         .O(reset_IBUF));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT3 #(
-    .INIT(8'h04)) 
-    \tmr[0]_i_1 
-       (.I0(\tmr[7]_i_3_n_0 ),
-        .I1(tmr_en),
-        .I2(tmr[0]),
-        .O(p_0_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT4 #(
-    .INIT(16'h0440)) 
-    \tmr[1]_i_1 
-       (.I0(\tmr[7]_i_3_n_0 ),
-        .I1(tmr_en),
-        .I2(tmr[1]),
-        .I3(tmr[0]),
-        .O(p_0_in[1]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT5 #(
-    .INIT(32'h04444000)) 
-    \tmr[2]_i_1 
-       (.I0(\tmr[7]_i_3_n_0 ),
-        .I1(tmr_en),
-        .I2(tmr[0]),
-        .I3(tmr[1]),
-        .I4(tmr[2]),
-        .O(p_0_in[2]));
-  LUT6 #(
-    .INIT(64'h0444444440000000)) 
-    \tmr[3]_i_1 
-       (.I0(\tmr[7]_i_3_n_0 ),
-        .I1(tmr_en),
-        .I2(tmr[1]),
-        .I3(tmr[0]),
-        .I4(tmr[2]),
-        .I5(tmr[3]),
-        .O(p_0_in[3]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT4 #(
-    .INIT(16'h4004)) 
-    \tmr[4]_i_1 
-       (.I0(\tmr[7]_i_3_n_0 ),
-        .I1(tmr_en),
-        .I2(\tmr[4]_i_2_n_0 ),
-        .I3(tmr[4]),
-        .O(p_0_in[4]));
-  LUT4 #(
-    .INIT(16'h7FFF)) 
-    \tmr[4]_i_2 
-       (.I0(tmr[2]),
-        .I1(tmr[0]),
-        .I2(tmr[1]),
-        .I3(tmr[3]),
-        .O(\tmr[4]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT4 #(
-    .INIT(16'h4004)) 
-    \tmr[5]_i_1 
-       (.I0(\tmr[7]_i_3_n_0 ),
-        .I1(tmr_en),
-        .I2(\tmr[5]_i_2_n_0 ),
-        .I3(tmr[5]),
-        .O(p_0_in[5]));
-  LUT5 #(
-    .INIT(32'h7FFFFFFF)) 
-    \tmr[5]_i_2 
-       (.I0(tmr[3]),
-        .I1(tmr[1]),
-        .I2(tmr[0]),
-        .I3(tmr[2]),
-        .I4(tmr[4]),
-        .O(\tmr[5]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT4 #(
-    .INIT(16'h4004)) 
-    \tmr[6]_i_1 
-       (.I0(\tmr[7]_i_3_n_0 ),
-        .I1(tmr_en),
-        .I2(\tmr[7]_i_2_n_0 ),
-        .I3(tmr[6]),
-        .O(p_0_in[6]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT5 #(
-    .INIT(32'h00009A00)) 
-    \tmr[7]_i_1 
-       (.I0(tmr[7]),
-        .I1(\tmr[7]_i_2_n_0 ),
-        .I2(tmr[6]),
-        .I3(tmr_en),
-        .I4(\tmr[7]_i_3_n_0 ),
-        .O(p_0_in[7]));
-  LUT6 #(
-    .INIT(64'h7FFFFFFFFFFFFFFF)) 
-    \tmr[7]_i_2 
-       (.I0(tmr[4]),
-        .I1(tmr[2]),
-        .I2(tmr[0]),
-        .I3(tmr[1]),
-        .I4(tmr[3]),
-        .I5(tmr[5]),
-        .O(\tmr[7]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000009009)) 
-    \tmr[7]_i_3 
-       (.I0(period[6]),
-        .I1(tmr[6]),
-        .I2(period[7]),
-        .I3(tmr[7]),
-        .I4(\tmr[7]_i_4_n_0 ),
-        .I5(\tmr[7]_i_5_n_0 ),
-        .O(\tmr[7]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'h6FF6FFFFFFFF6FF6)) 
-    \tmr[7]_i_4 
-       (.I0(tmr[0]),
-        .I1(period[0]),
-        .I2(period[2]),
-        .I3(tmr[2]),
-        .I4(period[1]),
-        .I5(tmr[1]),
-        .O(\tmr[7]_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'h6FF6FFFFFFFF6FF6)) 
-    \tmr[7]_i_5 
-       (.I0(tmr[3]),
-        .I1(period[3]),
-        .I2(period[4]),
-        .I3(tmr[4]),
-        .I4(period[5]),
-        .I5(tmr[5]),
-        .O(\tmr[7]_i_5_n_0 ));
-  LUT3 #(
-    .INIT(8'hEA)) 
-    tmr_en_i_1
-       (.I0(\FSM_sequential_FSM_reg_n_0_[1] ),
-        .I1(FSM),
-        .I2(tmr_en),
-        .O(tmr_en_i_1_n_0));
-  FDCE #(
-    .INIT(1'b0)) 
-    tmr_en_reg
-       (.C(clk_IBUF_BUFG),
-        .CE(1'b1),
-        .CLR(reset_IBUF),
-        .D(tmr_en_i_1_n_0),
-        .Q(tmr_en));
-  FDCE #(
-    .INIT(1'b0)) 
-    \tmr_reg[0] 
-       (.C(clk_IBUF_BUFG),
-        .CE(1'b1),
-        .CLR(reset_IBUF),
-        .D(p_0_in[0]),
-        .Q(tmr[0]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \tmr_reg[1] 
-       (.C(clk_IBUF_BUFG),
-        .CE(1'b1),
-        .CLR(reset_IBUF),
-        .D(p_0_in[1]),
-        .Q(tmr[1]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \tmr_reg[2] 
-       (.C(clk_IBUF_BUFG),
-        .CE(1'b1),
-        .CLR(reset_IBUF),
-        .D(p_0_in[2]),
-        .Q(tmr[2]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \tmr_reg[3] 
-       (.C(clk_IBUF_BUFG),
-        .CE(1'b1),
-        .CLR(reset_IBUF),
-        .D(p_0_in[3]),
-        .Q(tmr[3]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \tmr_reg[4] 
-       (.C(clk_IBUF_BUFG),
-        .CE(1'b1),
-        .CLR(reset_IBUF),
-        .D(p_0_in[4]),
-        .Q(tmr[4]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \tmr_reg[5] 
-       (.C(clk_IBUF_BUFG),
-        .CE(1'b1),
-        .CLR(reset_IBUF),
-        .D(p_0_in[5]),
-        .Q(tmr[5]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \tmr_reg[6] 
-       (.C(clk_IBUF_BUFG),
-        .CE(1'b1),
-        .CLR(reset_IBUF),
-        .D(p_0_in[6]),
-        .Q(tmr[6]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \tmr_reg[7] 
-       (.C(clk_IBUF_BUFG),
-        .CE(1'b1),
-        .CLR(reset_IBUF),
-        .D(p_0_in[7]),
-        .Q(tmr[7]));
   OBUF txout_OBUF_inst
        (.I(1'b1),
         .O(txout));
@@ -1079,17 +822,17 @@ end
        (.CLK(clk_IBUF_BUFG),
         .D(NLW_u0_D_UNCONNECTED[7:0]),
         .\FSM_sequential_FSM_reg[0] (FSM__0[0]),
-        .\FSM_sequential_FSM_reg[0]_0 (\FSM_sequential_FSM[0]_i_3_n_0 ),
-        .\FSM_sequential_FSM_reg[1] (u0_n_2),
+        .\FSM_sequential_FSM_reg[0]_0 (\FSM_sequential_FSM[0]_i_2_n_0 ),
+        .\FSM_sequential_FSM_reg[1] (u0_n_1),
         .Q({\FSM_sequential_FSM_reg_n_0_[1] ,FSM}),
-        .addr_IBUF(addr_IBUF),
         .baudclk16x(baudclk16x),
-        .control(control[0]),
-        .\control_reg[0] (u0_n_0),
+        .\dout[0] (period[0]),
+        .\dout[0]_0 (addrq),
+        .dout_OBUF(dout_OBUF[0]),
         .fifo_wren(fifo_wren),
-        .\read_cnt_reg[1]_0 (fifo_rden_reg_n_0),
-        .reset_IBUF(reset_IBUF),
-        .wren_IBUF(wren_IBUF));
+        .rdenq(rdenq),
+        .\read_cnt_reg[2]_0 (fifo_rden_reg_n_0),
+        .reset_IBUF(reset_IBUF));
   IBUF wren_IBUF_inst
        (.I(wren),
         .O(wren_IBUF));
