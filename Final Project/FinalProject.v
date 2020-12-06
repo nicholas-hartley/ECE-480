@@ -11,9 +11,11 @@ wire red_data, green_data, blue_data, vga_red_int, vga_green_int, vga_blue_int, 
 wire head_red, head_green, head_blue;
 wire body_red, body_green, body_blue;
 wire apple_red;
+wire [3:0] count;
 wire [9:0] snakeHeadX, snakeHeadY;
 wire [12:0] length;
 wire [2:0] next_direction;
+wire head_death;
 
 assign red_data = head_red || body_red || apple_red;
 assign green_data = head_green || body_green;
@@ -36,7 +38,8 @@ head head_inst (
     .blue(head_blue),
     .head_x(snakeHeadX),
     .head_y(snakeHeadY),
-    .current_direction(next_direction)
+    .current_direction(next_direction),
+    .count(count)
 );
 
 apple apple_inst(
@@ -67,7 +70,8 @@ body body_inst(
     // Output
     .red(body_red),
     .green(body_green),
-    .blue(body_blue)
+    .blue(body_blue),
+    .count(count)
 );
 
 // generate a 25 MHz clock from the board oscillator

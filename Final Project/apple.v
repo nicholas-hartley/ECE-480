@@ -6,7 +6,7 @@ module apple (
   input snek_green,
   input reset,
   input v_sync,
-  output red, green, blue,
+  output red,
   output reg [12:0] length
 );
 
@@ -58,12 +58,14 @@ always @ (posedge v_sync) begin
         new <= 1'b0;
     end else begin
         new = 1'b0;
-        y_pos <= apple_y_pos - (apple_y_pos % 4'd10);
-        x_pos <= apple_x_pos - (apple_x_pos % 4'd10);
+        y_pos = {3'b000, apple_y_pos[6:0]} + 4'b1010;
+        x_pos = {2'b00, apple_y_pos[7:0]} + 4'b1010;
+        y_pos = {y_pos[9:1], 1'b0};
+        x_pos = {x_pos[9:1], 1'b0};
         
-        if ((head_x == x_pos) && (head_y == y_pos)) begin
+        if ((head_x <= x_pos + 8) && (head_x >= x_pos - 8) && (head_y <= y_pos + 8) && (head_y >= y_pos - 8)) begin
             new = 1'b1;
-            length <= length + 1'b1;
+            length = length + 12'h001;
         end
     end
 end
